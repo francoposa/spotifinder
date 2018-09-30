@@ -1,45 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>SpotiFinder</title>
-  <meta name="description" content="Let Spotify analyze your favorite songs, artists, albums, and playlists and provide tailored suggestions in real time">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>SpotiFinder</title>
+    <meta name="description" content="Let Spotify analyze your favorite songs, artists, albums, and playlists and provide tailored suggestions in real time">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-      <link rel="stylesheet" href="css/style.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 
-  
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
-
-  <body>
-
-  <div ng-app="WikiApp">
-    <div ng-controller="MainCtrl">
-      <div class="container">
+    <div class="container">
         <div class="row text-center">
-          <header class="col-xs-12">
-            <h1><strong>Spoti&#183;Finder<strong></h1>
-          </header>
-          <div class="col-xs-10 col-xs-offset-1 text-center">
-            <form class="input-group input-group-lg" ng-submit="searchWiki()">
-              <input id="searchInput" class="form-control" type="text" ng-model="searchTxt" />
-              <span class="input-group-btn">
+            <header class="col-xs-12">
+                <h1><strong>Spoti&#183;Finder<strong></h1>
+            </header>
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+                <form class="input-group input-group-lg" ng-submit="searchWiki()">
+                    <input id="searchInput" class="form-control" type="text" ng-model="searchTxt" />
+                    <span class="input-group-btn">
               <button class="btn btn-success" id="searchBtn">
                  <span class=" glyphicon glyphicon-search"></span>
-              </button>
-              </span>
-            </form>
-          </div>
+                    </button>
+                    </span>
+                </form>
+            </div>
         </div>
-      </div>
-      <div class="container hide" id="results">
+    </div>
+    <div class="container hide" id="results">
         <h2 class="text-center">Search Topic: "{{ topic }}" </h1>
         <ul>
           <li ng-repeat="result in results">
@@ -49,19 +43,12 @@
         </ul>
         <br>
       </div>
-    </div>
-  </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
- -->
-  
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 
 <!--     <script  src="js/index.js"></script> -->
-
-
-
 
 </body>
 
