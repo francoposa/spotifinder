@@ -10,7 +10,7 @@ h1 {
 	margin: 0.5em;
 }
 .container {
-    box-shadow:0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.05);
+    box-shadow:0 14px 28px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.05);
 	padding-bottom:5em;
 }
 #searchForm .btn-success {
