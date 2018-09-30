@@ -1,12 +1,23 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  color:black;
+  color: #191414;
   background-color:rgb(255,255,255);
   margin-top: 2em;
-  margin-bottom:5em;
 }
 h1 {
 	font-size: 5em;
 	font-weight: 900;
-	margin: 1em;
+	margin: 0.5em;
+}
+.container {
+    box-shadow:0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.08);
+	padding-bottom:5em;
+}
+#searchForm .btn-success {
+    background-color: #1db954;
+    border-color: #1db954;
+    height: 3em;
+}
+#searchForm .search-bar {
+	height: 3em;
 }
