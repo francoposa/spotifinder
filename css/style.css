@@ -9,6 +9,9 @@ h1 {
 	font-weight: 900;
 	margin: 0.5em;
 }
+iframe {
+	margin: 1em;
+}
 .container {
 	background-color:rgb(254,254,254);
 	border-radius: 7px;
