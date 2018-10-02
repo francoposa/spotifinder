@@ -1,22 +1,27 @@
 body {
   font-family: 'Montserrat', sans-serif;
   color: #191414;
-  background-color:rgb(25,20,20);
-  margin-top: 2em;
+  background-color:rgb(254,254,254);
 }
 h1 {
-	font-size: 4vw;
-	font-weight: 900;
+
 	margin: 0.5em;
 }
 iframe {
-	margin: 1em;
+	margin: 2em;
 }
 .container {
 	background-color:rgb(254,254,254);
 	border-radius: 7px;
     box-shadow:0 14px 28px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.05);
 	padding-bottom:5em;
+}
+.navbar {
+	margin-bottom: 1em;
+}
+.navbar-brand {
+	font-size: 2vw;
+	font-weight: 900;
 }
 #slideForm {
 	margin-top: 1em;
