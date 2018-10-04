@@ -8,11 +8,11 @@ a {
   text-decoration: inherit;
 }
 header {
-	padding-top: 2em;
+	padding-top: 1.5em;
 	margin-bottom: 0.5em;
 }
-iframe {
-	margin: 1em;
+#seed {
+	margin-top: 2em;
 }
 #topLine {
 	width: 100%;

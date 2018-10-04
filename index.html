@@ -31,8 +31,8 @@
         <span class="navbar-brand"><a href="#">Spoti&#183;Finder</a></span>
       </nav>
     </div>
-    <div class="container">
-        <div class="row text-center">
+          <div class="container">
+        <div id="search" class="row text-center">
             <header class="col-xs-10 col-xs-offset-1">
               <p class="text-left">Paste a link to a Spotify song, artist, album, or playlist to analyze</p>
             </header>
@@ -45,10 +45,10 @@
                 </form>
             </div>
         </div>
-        <div class="row text-center" id="seed">
+        <div id="seed" class="row text-center">
           <div class="col-xs-10 col-xs-offset-1 text-center">
             <span class="col-xs-5">
-              <object v-bind:data="currentSeedURL" width="300" height="300"></object>
+              <object v-bind:data="currentSeedURL" width="300" height="400"></object>
           </span>
           </div>
         </div>
