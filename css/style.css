@@ -3,6 +3,10 @@ body {
   color: #191414;
   background-color:rgb(254,254,254);
 }
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
 header {
 	padding-top: 2em;
 	margin-bottom: 0.5em;
