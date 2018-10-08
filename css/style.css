@@ -19,9 +19,6 @@ header {
 	height: 0.3em;
     background: #1db954;
 }
-#searchForm {
-    border-radius: 3px;
-}
 .container {
 	background-color:rgb(254,254,254);
 	border-style: solid;
@@ -81,4 +78,6 @@ header {
 #searchForm .btn-success {
     background-color: #1db954;
     border-color: #1db954;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
