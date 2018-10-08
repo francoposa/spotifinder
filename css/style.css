@@ -5,7 +5,7 @@ body {
 }
 a {
   color: inherit;
-  text-decoration: inherit;
+  text-decoration: none;
 }
 header {
 	padding-top: 1.5em;
