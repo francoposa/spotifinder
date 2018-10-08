@@ -11,6 +11,9 @@ header {
 	padding-top: 1.5em;
 	margin-bottom: 0.5em;
 }
+object {
+    border-radius: 3px !important; 
+}
 #seed {
 	margin-top: 2em;
 }
