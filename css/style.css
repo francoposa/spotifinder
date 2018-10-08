@@ -1,3 +1,6 @@
+* {
+  border-radius: 3px !important;
+}
 body {
   font-family: 'Montserrat', sans-serif;
   color: #191414;
