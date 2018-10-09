@@ -1,6 +1,8 @@
-var app = new Vue({
-  el: '#app',
-  data: {
-    currentSeedURL: 'https://open.spotify.com/embed/track/3l1QX9fhldeI23AlON5iY3'
-  }
-})
+var danceabilityRange = document.getElementById("danceabilityRange");
+var danceabilityValue = document.getElementById("danceabilityValue");
+danceabilityValue.innerHTML = danceabilityRange.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+danceabilityRange.oninput = function() {
+    danceabilityValue.innerHTML = this.value;
+}
