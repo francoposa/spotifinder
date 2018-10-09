@@ -35,7 +35,7 @@ header {
 	margin-bottom: 0.5em;
 }
 object {
-    width: 80%;
+    width: 70%;
     height: inherit;
     border-radius: 3px !important; 
 }
@@ -113,7 +113,7 @@ object {
     border-bottom-left-radius: 3px;
 }
 #seedColumns {
-    height: 24em;
+    height: 25em;
 }
 #seed-left {
     height: inherit;
