@@ -11,10 +11,6 @@ function setup() {
 	var loudnessValue = document.getElementById("loudnessValue");
 	loudnessValue.innerHTML = loudnessRange.value; // Display the default slider value
 
-	var popularityRange = document.getElementById("popularityRange");
-	var popularityValue = document.getElementById("popularityValue");
-	popularityValue.innerHTML = popularityRange.value; // Display the default slider value
-
 	var tempoRange = document.getElementById("tempoRange");
 	var tempoValue = document.getElementById("tempoValue");
 	tempoValue.innerHTML = tempoRange.value; // Display the default slider value
@@ -32,9 +28,6 @@ function setup() {
 	}
 	loudnessRange.oninput = function() {
 	    loudnessValue.innerHTML = this.value;
-	}
-	popularityRange.oninput = function() {
-	    popularityValue.innerHTML = this.value;
 	}
 	tempoRange.oninput = function() {
 	    tempoValue.innerHTML = this.value;

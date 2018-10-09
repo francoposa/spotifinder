@@ -35,6 +35,8 @@ header {
 	margin-bottom: 0.5em;
 }
 object {
+    width: 80%;
+    height: inherit;
     border-radius: 3px !important; 
 }
 #seed {
@@ -70,13 +72,13 @@ object {
 	width: 100%;
 }
 .slider-label {
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 .slider {
     -webkit-appearance: none;
     width: 90%;
     height: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     border-radius: 10px;   
     background: rgb(240,240,240);
     outline: none;
@@ -110,12 +112,17 @@ object {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
+#seedColumns {
+    height: 24em;
+}
 #seed-left {
+    height: inherit;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
 #seed-right {
+    height: inherit;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
