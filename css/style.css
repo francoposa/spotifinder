@@ -64,21 +64,20 @@ object {
 	font-weight: 900;
 }
 #slideForm {
-	margin-top: 1em;
 	width: 100%; /* Width of the outside container */
 }
 .slide-container {
 	width: 100%;
 }
 .slider-label {
-	margin-top: 3%;
-	margin-bottom: 1%;
+	margin-bottom: 5px;
 }
 .slider {
     -webkit-appearance: none;
     width: 90%;
-    height: 15px;
-    border-radius: 5px;   
+    height: 10px;
+    margin-bottom: 25px;
+    border-radius: 10px;   
     background: rgb(240,240,240);
     outline: none;
     -webkit-transition: .2s;
@@ -87,16 +86,16 @@ object {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%; 
     background: #1db954;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #1db954;
     cursor: pointer;

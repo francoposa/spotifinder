@@ -44,3 +44,5 @@ function setup() {
 	}
 }
 setup();
+
+// function analyze(uri)
