@@ -74,9 +74,13 @@ object {
 .slider-label {
 	margin-bottom: 10px;
 }
+input[type=range] {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
 .slider {
     -webkit-appearance: none;
-    width: 90%;
     height: 10px;
     margin-bottom: 30px;
     border-radius: 10px;   
