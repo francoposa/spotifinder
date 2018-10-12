@@ -43,15 +43,15 @@
       <div class="container">
         <div class="row text-center">
             <header class="col-xs-10 col-xs-offset-1">
-              <p class="text-left">Paste a link to a Spotify song, artist, album, or playlist to analyze</p>
+              <p class="text-left">Paste a link to a Spotify track to analyze</p>
             </header>
         </div>
         <div class="row text-center">
             <div class="col-xs-10 col-xs-offset-1 text-center">
-                <form id="searchForm" class="input-group input-group-lg">
+                <form  onsubmit="analyze()"  id="searchForm" class="input-group input-group-lg">
                     <input id="searchInput" class="form-control search-bar" type="text" value="https://open.spotify.com/track/3l1QX9fhldeI23AlON5iY3" placeholder="https://open.spotify.com/track/3l1QX9fhldeI23AlON5iY3"/>
                     <span class="input-group-btn">
-                      <button class="btn btn-success" id="searchBtn">Analyze</button>
+                      <button  type="submit" class="btn btn-success" id="searchBtn">Analyze</button>
                     </span>
                 </form>
             </div>
@@ -70,8 +70,8 @@
                 <input type="range" min="1" max="100" value="50" class="slider" id="energyRange">
                 <label class="slider-label" for="LoudnessRange">Loudness: <span id="loudnessValue"></span></label>
                 <input type="range" min="1" max="100" value="50" class="slider" id="loudnessRange">
-                <label class="slider-label" for="tempoRange">Tempo: <span id="tempoValue"></span></label>
-                <input type="range" min="1" max="100" value="50" class="slider" id="tempoRange">
+                <label class="slider-label" for="tempoRange">Tempo: <span id="tempoValue"></span> bpm</label>
+                <input type="range" min="1" max="250" value="125" class="slider" id="tempoRange">
                 <label class="slider-label" for="valenceRange">Valence: <span id="valenceValue"></span></label>
                 <input type="range" min="1" max="100" value="50" class="slider" id="valenceRange">
               </div>
@@ -85,7 +85,6 @@
         </div>
       </div>
     </div>
-<script src="js/index.js"></script>
 </body>
-
+    <script src="js/index.js"></script>
 </html>
