@@ -83,16 +83,16 @@ function do_get_analysis(uri) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
 	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.onload = function() {
-    	if (xhr.status === 200) {
-        	analysis = JSON.parse(xhr.responseText)['analysis'];
+	xhr.onload = handle_analysis_response;
+	xhr.send();
+}
+
+function handle_analysis_response() {
+	if (this.status === 200) {
+        	analysis = JSON.parse(this.responseText)['analysis'];
         	analysis = normalize_analysis(analysis)
         	set_sliders(analysis)
-        	
-
     	}
-	};
-	xhr.send();
 }
 
 function normalize_analysis(raw_analysis) {
