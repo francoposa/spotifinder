@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function analyze() {
 	raw_input = document.getElementById('searchInput').value
 	uri = parse_input(raw_input)	
+	update_embed_object(uri)
 	do_get_analysis(uri)
 }
 
@@ -74,16 +75,13 @@ function parse_input(raw_input) {
 	url_no_trailing_slash = url_without_query_string.endsWith('/') ? url_without_query_string.slice(0, -1) : url_without_query_string;
 	document.getElementById('searchInput').value = url_no_trailing_slash
 	url_sections = url_no_trailing_slash.split('/')
-	track_index = url_sections.indexOf('track')
-	url_sections.splice(track_index, 0, 'embed')
-	embed_url = url_sections.join('/')
-	update_embed_object(embed_url)
 	uri = url_sections[url_sections.length - 1]
 	console.log(uri)
 	return uri
 }
 
-function update_embed_object(new_url) {
+function update_embed_object(new_uri) {
+	embed_url = data="https://open.spotify.com/embed/track/" + new_uri
 	seedObject = document.getElementById('seedObject')
 	seedObject.outerHTML = seedObject.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"')
 }
@@ -98,7 +96,7 @@ function do_get_analysis(uri) {
 
 function handle_analysis_response() {
 	if (this.status === 200) {
-        	analysis = JSON.parse(this.responseText)['analysis'];
+        	analysis = JSON.parse(this.responseText);
         	analysis = normalize_analysis(analysis)
         	set_sliders(analysis)
     	}
