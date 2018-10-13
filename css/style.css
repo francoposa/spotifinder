@@ -34,13 +34,14 @@ header {
 	padding-top: 1.5em;
 	margin-bottom: 0.5em;
 }
+h3 {
+    display: block;
+}
 object {
     width: 70%;
+    margin: 5px;
     height: inherit;
     border-radius: 3px !important; 
-}
-#seed {
-	margin-top: 2em;
 }
 #topLine {
 	width: 100%;
@@ -66,7 +67,12 @@ object {
 	font-weight: 900;
 }
 #slideForm {
-	width: 100%; /* Width of the outside container */
+	width: 95%; /* Width of the outside container */
+    margin-top: 2em;
+    border-left-style: solid;
+    border-width: 1px;
+    border-color: rgb(240,240,240);
+    border-radius: 3px;
 }
 .slide-container {
 	width: 100%;
@@ -82,7 +88,7 @@ input[type=range] {
 .slider {
     -webkit-appearance: none;
     height: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 33px;
     border-radius: 10px;   
     background: rgb(240,240,240);
     outline: none;
@@ -116,18 +122,87 @@ input[type=range] {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
-#seedColumns {
-    height: 25em;
+#seed {
+    margin-top: 2em;
+    height: 38em;
+}
+#seedTopBar {
+    width: 100%;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: rgb(240,240,240);
+    border-radius: 3px;
+}
+#analysisHeader {
+/*    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: rgb(240,240,240);
+    border-radius: 3px;
+    padding-bottom: 0.5em;*/
+    margin-top: 0em;
+    margin-bottom: 1em;
+}
+#recommendationsHeader {
+    margin-bottom: 1em;
+}
+#seedColumn {
+    height: 30em;
+    width: 98%;
+    margin-bottom: 1em;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 0px;
 }
 #seed-left {
     height: inherit;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 40%;
+    margin-top: 1em;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-left: 5%;
+    padding-right: 0%;
 }
 #seed-right {
     height: inherit;
-    width: 50%;
+    width: 55%;
+    margin-top: 1em;
+    margin-left: 0%;
+    margin-right: auto;
+    padding-left: 0%;
+}
+#seedObject {
+    height: 25em;
+    width: 22em;
+    margin-top: 2em;
+}
+.recommendation-row {
+    height: 25em;
+}
+.recommendation-columns {
+    height: inherit;
+    width: 98%;
+    margin-bottom: 1em;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 0px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(240,240,240);
+    border-radius: 3px;
+}
+.recommendation {
+    height: inherit;
+    padding: 10px;
+    width: 25%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.recommendation-object {
+    height: 100%;
+    width: 100%;
+    margin: 0%;
+}
+.footer {
+    height: 5em;
 }

@@ -61,16 +61,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+const LIMIT = 12
 
 
 function analyze() {
 	raw_input = document.getElementById('searchInput').value
-	uri = parse_input(raw_input)	
-	update_embed_object(uri)
+	uri = parse_uri(raw_input)	
+	update_embed_object(uri, 'seedObject')
 	do_get_analysis(uri)
 }
 
-function parse_input(raw_input) {
+function parse_uri(raw_input) {
 	url_without_query_string = raw_input.split(/[?#]/)[0];
 	url_no_trailing_slash = url_without_query_string.endsWith('/') ? url_without_query_string.slice(0, -1) : url_without_query_string;
 	document.getElementById('searchInput').value = url_no_trailing_slash
@@ -80,9 +81,9 @@ function parse_input(raw_input) {
 	return uri
 }
 
-function update_embed_object(new_uri) {
+function update_embed_object(new_uri, id_to_update) {
 	embed_url = data="https://open.spotify.com/embed/track/" + new_uri
-	seedObject = document.getElementById('seedObject')
+	seedObject = document.getElementById(id_to_update)
 	seedObject.outerHTML = seedObject.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"')
 }
 
@@ -97,6 +98,7 @@ function do_get_analysis(uri) {
 function handle_analysis_response() {
 	if (this.status === 200) {
         	analysis = JSON.parse(this.responseText);
+            do_get_recommendation(analysis)
         	analysis = normalize_analysis(analysis)
         	set_sliders(analysis)
     	}
@@ -128,5 +130,51 @@ function set_sliders(normalized_analysis) {
 	tempoRange.onchange()
 	valenceRange.value = normalized_analysis['valence']
 	valenceRange.onchange()
+}
+
+function do_get_recommendation(raw_analysis) {
+    param_dict = prep_recommendation_params(raw_analysis)
+    query_string = '?'
+    for (var key in param_dict) {
+        if (param_dict.hasOwnProperty(key)) {
+            query_string += key + '=' + String(param_dict[key]) + '&'
+        }
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/recommend' + query_string);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = handle_recommendation_response;
+    xhr.send();
+}
+
+function prep_recommendation_params(raw_analysis) {
+    rec_params = {}
+    rec_params['seed_tracks'] = raw_analysis['id']
+    rec_params['danceability'] = raw_analysis['danceability']
+    rec_params['energy'] = raw_analysis['energy']
+    rec_params['loudness'] = raw_analysis['loudness']
+    rec_params['tempo'] = raw_analysis['tempo']
+    rec_params['valence'] = raw_analysis['valence']
+    rec_params['limit'] = LIMIT
+    return rec_params
+}
+
+
+function handle_recommendation_response() {
+    if (this.status === 200) {
+            recommendations = JSON.parse(this.responseText);
+            console.log(recommendations)
+            update_recommendations(recommendations)
+
+        }
+}
+
+function update_recommendations(raw_recommendations) {
+    tracks = raw_recommendations['tracks']
+    for (var i = 0; i < LIMIT; i++) {
+        track = tracks[i]
+        id = track['id']
+        update_embed_object(id, 'recommendObject' + String(i + 1))
+    }
 }
 
