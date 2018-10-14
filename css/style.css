@@ -61,7 +61,8 @@ object {
 }
 #navContainer {
     margin: 0em;
-    width: 100%;
+    margin-left: 7.5%;
+    width: 85%;
     border-top-width: 3px;
 }
 #nav {
