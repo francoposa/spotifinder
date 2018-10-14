@@ -35,13 +35,17 @@
   <div id="app">
     <div id="topLine">
     </div>
-    <div class="container">
-      <nav class="navbar navbar-light">
+    <div id="navContainer" class="container">
+      <nav id="nav" class="navbar navbar-light">
         <span class="navbar-brand"><a href="#">Spoti&#183;Finder</a></span>
       </nav>
     </div>
-      <div class="container">
+    <div class="container">
         <div class="row text-center">
+                  <h3 id="analysisHeader" class="col-xs-8 col-xs-offset-2 text-center">Analysis</h3>
+                      <div class="col-xs-10 col-xs-offset-1 text-center">
+            <span id="seedTopBar" class="col-xs-10 text-center"></span>
+          </div>
             <header class="col-xs-10 col-xs-offset-1">
               <p class="text-left">Paste a link to a Spotify track to analyze</p>
             </header>
@@ -57,17 +61,13 @@
             </div>
           </div>
         <div id="seed" class="row text-center">
-          <h3 id="analysisHeader" class="col-xs-8 col-xs-offset-2 text-center">Analysis</h3>
-          <div class="col-xs-10 col-xs-offset-1 text-center">
-            <span id="seedTopBar" class="col-xs-10 text-center"></span>
-          </div>
           <div id="seedColumn" class="col-xs-10 col-xs-offset-1 text-center">
             <span id="seed-left" class="col-xs-4 text-center">
-              <h4>Your Track:</h4>
+              <h4>Your Track</h4>
               <object id="seedObject" data="https://open.spotify.com/embed/track/3l1QX9fhldeI23AlON5iY3"></object>
           </span>
           <span id="seed-right" class="col-xs-6 text-center">
-            <h4>Audio Features:</h4>
+            <h4>Audio Features</h4>
             <form id="slideForm" class="input-group input-group-lg">
               <div class="slide-container text-center">
                 <label class="slider-label" for="danceabilityRange">Danceability: <span id="danceabilityValue"></span></label>

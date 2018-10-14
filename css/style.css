@@ -53,9 +53,15 @@ object {
 	border-style: solid;
 	border-width: 1px;
 	border-color: rgb(240,240,240);
+    border-top-color: #1db954;
+    border-top-width: 2px;
 	border-radius: 3px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.05);
 	margin-bottom: 1em;
+}
+#navContainer {
+    margin-bottom: 0.5em;
+    border-style: none;
 }
 .navbar {
 	margin-top: 0.75em;
@@ -123,8 +129,8 @@ input[type=range] {
     border-bottom-left-radius: 3px;
 }
 #seed {
-    margin-top: 1.75em;
-    height: 36em;
+    margin-top: 1em;
+    height: 32em;
 }
 #seedTopBar {
     width: 100%;
@@ -134,16 +140,12 @@ input[type=range] {
     border-radius: 3px;
 }
 #analysisHeader {
-/*    border-bottom-style: solid;
-    border-width: 1px;
-    border-color: rgb(240,240,240);
-    border-radius: 3px;
-    padding-bottom: 0.5em;*/
-    margin-top: 0em;
-    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    margin-bottom: 0em;
 }
 #recommendationsHeader {
-    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 0em;
 }
 #seedColumn {
     height: 30em;
