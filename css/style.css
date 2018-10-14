@@ -60,27 +60,26 @@ object {
 	margin-bottom: 1em;
 }
 #navContainer {
-    margin-bottom: 0.5em;
     border-style: none;
 }
 #nav {
     border-style: none;
     border-bottom-style: solid;
     border-width: 1px;
-    border-color: rgb(240,240,240);
+    border-color: rgb(220,220,220);
     border-radius: 3px;
 }
 .navbar {
 	margin-top: 0.75em;
-	margin-bottom: 0em;
-
+    margin-bottom: 0em;
 }
 .navbar-brand {
-
+    margin-bottom: 0.5em;
+    font-size: 1.75em;
 	font-weight: 900;
 }
 #inputInstructions {
-    padding-top: 1em;
+    padding-top: 1.5em;
 }
 #slideForm {
 	width: 95%; /* Width of the outside container */
