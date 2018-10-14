@@ -74,7 +74,8 @@ object {
     margin-bottom: 0em;
 }
 .navbar-brand {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.75em;
+    padding: 18px;
     font-size: 1.75em;
 	font-weight: 900;
 }
