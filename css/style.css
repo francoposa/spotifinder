@@ -63,14 +63,24 @@ object {
     margin-bottom: 0.5em;
     border-style: none;
 }
+#nav {
+    border-style: none;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: rgb(240,240,240);
+    border-radius: 3px;
+}
 .navbar {
 	margin-top: 0.75em;
-	margin-bottom: 0.75em;
+	margin-bottom: 0em;
 
 }
 .navbar-brand {
 
 	font-weight: 900;
+}
+#inputInstructions {
+    padding-top: 1em;
 }
 #slideForm {
 	width: 95%; /* Width of the outside container */
