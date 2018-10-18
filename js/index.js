@@ -88,13 +88,13 @@ function parse_uri(raw_input) {
 }
 
 function update_embed_object(new_uri, id_to_update) {
-    seedObject = document.getElementById(id_to_update);
-    current_uri = parse_uri(seedObject.data);
+    obj = document.getElementById(id_to_update);
+    current_uri = parse_uri(obj.data);
     if (current_uri == new_uri) {
         return;
     }
 	embed_url = data="https://open.spotify.com/embed/track/" + new_uri;
-	seedObject.outerHTML = seedObject.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
+	obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
 }
 
 function do_get_analysis(uri) {
