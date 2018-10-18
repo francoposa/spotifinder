@@ -55,11 +55,17 @@ document.getElementById('searchBtn').onclick = function(e) {
 	e.preventDefault();
 	analyze()
 }
-
+current_seed_uri = null
 document.addEventListener('DOMContentLoaded', function() {
-    analyze()
+    current_seed_uri = parse_uri(document.getElementById('seedObject').data)
+    set_sliders({
+        'danceability': 74,
+        'energy': 76,
+        'loudness': 80,
+        'tempo': 117,
+        'valence': 71
+    })
 });
-
 
 const LIMIT = 12
 
@@ -74,17 +80,21 @@ function analyze() {
 function parse_uri(raw_input) {
 	url_without_query_string = raw_input.split(/[?#]/)[0];
 	url_no_trailing_slash = url_without_query_string.endsWith('/') ? url_without_query_string.slice(0, -1) : url_without_query_string;
-	document.getElementById('searchInput').value = url_no_trailing_slash
-	url_sections = url_no_trailing_slash.split('/')
-	uri = url_sections[url_sections.length - 1]
-	console.log(uri)
+	document.getElementById('searchInput').value = url_no_trailing_slash;
+	url_sections = url_no_trailing_slash.split('/');
+	uri = url_sections[url_sections.length - 1];
+	console.log(uri);
 	return uri
 }
 
 function update_embed_object(new_uri, id_to_update) {
-	embed_url = data="https://open.spotify.com/embed/track/" + new_uri
-	seedObject = document.getElementById(id_to_update)
-	seedObject.outerHTML = seedObject.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"')
+    seedObject = document.getElementById(id_to_update);
+    current_uri = parse_uri(seedObject.data);
+    if (current_uri == new_uri) {
+        return;
+    }
+	embed_url = data="https://open.spotify.com/embed/track/" + new_uri;
+	seedObject.outerHTML = seedObject.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
 }
 
 function do_get_analysis(uri) {
