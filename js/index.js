@@ -80,7 +80,6 @@ function analyze() {
 function parse_uri(raw_input) {
 	url_without_query_string = raw_input.split(/[?#]/)[0];
 	url_no_trailing_slash = url_without_query_string.endsWith('/') ? url_without_query_string.slice(0, -1) : url_without_query_string;
-	document.getElementById('searchInput').value = url_no_trailing_slash;
 	url_sections = url_no_trailing_slash.split('/');
 	uri = url_sections[url_sections.length - 1];
 	console.log(uri);
