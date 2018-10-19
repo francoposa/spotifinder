@@ -108,39 +108,41 @@ function do_get_analysis(uri) {
 
 function handle_analysis_response() {
 	if (this.status === 200) {
-        	analysis = JSON.parse(this.responseText);
-            do_get_recommendation(analysis)
-        	analysis = normalize_analysis(analysis)
-        	set_sliders(analysis)
+            analysis = JSON.parse(this.responseText);
+            do_get_recommendation(analysis);
+            analysis = normalize_analysis(analysis);
+            set_sliders(analysis);
     	}
 }
 
 function normalize_analysis(raw_analysis) {
-	danceability = Math.round(analysis['danceability'] * 100)
-	energy = Math.round(analysis['energy'] * 100)
-	loudness = Math.round(((-60 - analysis['loudness']) / -60) * 100)
-	tempo = Math.round(analysis['tempo'])
-	valence = Math.round(analysis['valence'] * 100)
+	console.log("normalizing analysis: " + String(raw_analysis));
+	danceability = Math.round(analysis['danceability'] * 100);
+	energy = Math.round(analysis['energy'] * 100);
+	loudness = Math.round(((-60 - analysis['loudness']) / -60) * 100);
+	tempo = Math.round(analysis['tempo']);
+	valence = Math.round(analysis['valence'] * 100);
 	return {
 		'danceability': danceability,
 		'energy': energy,
 		'loudness': loudness,
 		'tempo': tempo,
 		'valence': valence
-	}
+	};
 }
 
 function set_sliders(normalized_analysis) {
-	danceabilityRange.value = normalized_analysis['danceability']
-	danceabilityRange.onchange()
-	energyRange.value = normalized_analysis['energy']
-	energyRange.onchange()
-	loudnessRange.value = normalized_analysis['loudness']
-	loudnessRange.onchange()
-	tempoRange.value = normalized_analysis['tempo']
-	tempoRange.onchange()
-	valenceRange.value = normalized_analysis['valence']
-	valenceRange.onchange()
+	console.log("setting sliders");
+	danceabilityRange.value = normalized_analysis['danceability'];
+	danceabilityRange.onchange();
+	energyRange.value = normalized_analysis['energy'];
+	energyRange.onchange();
+	loudnessRange.value = normalized_analysis['loudness'];
+	loudnessRange.onchange();
+	tempoRange.value = normalized_analysis['tempo'];
+	tempoRange.onchange();
+	valenceRange.value = normalized_analysis['valence'];
+	valenceRange.onchange();
 }
 
 function do_get_recommendation(raw_analysis) {
