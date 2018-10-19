@@ -88,13 +88,18 @@ function parse_uri(raw_input) {
 }
 
 function update_embed_object(new_uri, id_to_update) {
+    console.log("id to udpate: " + id_to_update)
     obj = document.getElementById(id_to_update);
     current_uri = parse_uri(obj.data);
+    console.log("current uri: " + current_uri)
+    console.log("new_uri: " + new_uri)
     if (current_uri == new_uri) {
         return;
     }
+    else {
 	embed_url = data="https://open.spotify.com/embed/track/" + new_uri;
 	obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
+    }
 }
 
 function do_get_analysis(uri) {
