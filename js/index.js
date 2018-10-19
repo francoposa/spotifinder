@@ -56,13 +56,16 @@ document.getElementById('searchBtn').onclick = function(e) {
 	analyze()
 }
 document.addEventListener('DOMContentLoaded', function() {
-    set_sliders({
-        'danceability': 74,
-        'energy': 76,
-        'loudness': 88,
-        'tempo': 117,
-        'valence': 71
-    })
+    if (!('hasCodeRunBefore' in localStorage)) {
+        set_sliders({
+            'danceability': 74,
+            'energy': 76,
+            'loudness': 88,
+            'tempo': 117,
+            'valence': 71
+        });
+        localStorage.setItem("hasCodeRunBefore", true);
+    }
 });
 
 const LIMIT = 12
