@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     set_sliders({
         'danceability': 74,
         'energy': 76,
-        'loudness': 80,
+        'loudness': 88,
         'tempo': 117,
         'valence': 71
     })
