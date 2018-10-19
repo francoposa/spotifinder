@@ -70,9 +70,7 @@ const LIMIT = 12
 
 function analyze() {
 	raw_input = document.getElementById('searchInput').value
-	console.log("Raw input: " + raw_input);
 	uri = parse_uri(raw_input);
-	console.log("URI from Raw input: " + uri);
 	update_embed_object(uri, 'seedObject');
 	do_get_analysis(uri);
 }
@@ -82,16 +80,12 @@ function parse_uri(raw_input) {
 	url_no_trailing_slash = url_without_query_string.endsWith('/') ? url_without_query_string.slice(0, -1) : url_without_query_string;
 	url_sections = url_no_trailing_slash.split('/');
 	uri = url_sections[url_sections.length - 1];
-	console.log(uri);
 	return uri
 }
 
 function update_embed_object(new_uri, id_to_update) {
-    console.log("id to udpate: " + id_to_update)
     obj = document.getElementById(id_to_update);
     current_uri = parse_uri(obj.data);
-    console.log("current uri: " + current_uri)
-    console.log("new_uri: " + new_uri)
     if (current_uri == new_uri) {
         return;
     }
