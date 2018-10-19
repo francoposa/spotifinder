@@ -55,18 +55,18 @@ document.getElementById('searchBtn').onclick = function(e) {
 	e.preventDefault();
 	analyze()
 }
-document.addEventListener('DOMContentLoaded', function() {
-    if (!('hasCodeRunBefore' in localStorage)) {
-        set_sliders({
-            'danceability': 74,
-            'energy': 76,
-            'loudness': 88,
-            'tempo': 117,
-            'valence': 71
-        });
-        localStorage.setItem("hasCodeRunBefore", true);
-    }
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     if (!('hasCodeRunBefore' in localStorage)) {
+//         set_sliders({
+//             'danceability': 74,
+//             'energy': 76,
+//             'loudness': 88,
+//             'tempo': 117,
+//             'valence': 71
+//         });
+//         localStorage.setItem("hasCodeRunBefore", true);
+//     }
+// });
 
 const LIMIT = 12
 
