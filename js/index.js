@@ -55,9 +55,7 @@ document.getElementById('searchBtn').onclick = function(e) {
 	e.preventDefault();
 	analyze()
 }
-current_seed_uri = null
 document.addEventListener('DOMContentLoaded', function() {
-    current_seed_uri = parse_uri(document.getElementById('seedObject').data)
     set_sliders({
         'danceability': 74,
         'energy': 76,
