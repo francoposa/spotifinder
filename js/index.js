@@ -70,9 +70,11 @@ const LIMIT = 12
 
 function analyze() {
 	raw_input = document.getElementById('searchInput').value
-	uri = parse_uri(raw_input)	
-	update_embed_object(uri, 'seedObject')
-	do_get_analysis(uri)
+	console.log("Raw input: " + raw_input);
+	uri = parse_uri(raw_input);
+	console.log("URI from Raw input: " + uri);
+	update_embed_object(uri, 'seedObject');
+	do_get_analysis(uri);
 }
 
 function parse_uri(raw_input) {
