@@ -69,9 +69,12 @@ const LIMIT = 12
 
 
 function analyze() {
-	raw_input = document.getElementById('searchInput').value
+	console.log("calling analyze");
+	raw_input = document.getElementById('searchInput').value;
 	uri = parse_uri(raw_input);
+	console.log("about to update embed object");
 	update_embed_object(uri, 'seedObject');
+	console.log("about to get analysis")
 	do_get_analysis(uri);
 }
 
