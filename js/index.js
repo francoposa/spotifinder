@@ -55,18 +55,7 @@ document.getElementById('searchBtn').onclick = function (e) {
     e.preventDefault();
     analyze()
 }
-// document.addEventListener('DOMContentLoaded', function() {
-//     if (!('hasCodeRunBefore' in localStorage)) {
-//         set_sliders({
-//             'danceability': 74,
-//             'energy': 76,
-//             'loudness': 88,
-//             'tempo': 117,
-//             'valence': 71
-//         });
-//         localStorage.setItem("hasCodeRunBefore", true);
-//     }
-// });
+
 
 const LIMIT = 12
 
@@ -74,11 +63,12 @@ const LIMIT = 12
 function analyze() {
     console.log("calling analyze");
     raw_input = document.getElementById('searchInput').value;
+    console.log(raw_input);
     uri = parse_uri(raw_input);
+    console.log(uri);
     console.log("about to update embed object");
-    update_embed_object(uri, 'seedObject');
-    console.log("about to get analysis")
-    do_get_analysis(uri);
+    update_embed_object(uri, 'seedObject', do_get_analysis);
+    console.log("about to get analysis");
 }
 
 function parse_uri(raw_input) {
@@ -89,7 +79,7 @@ function parse_uri(raw_input) {
     return uri
 }
 
-function update_embed_object(new_uri, id_to_update) {
+function update_embed_object(new_uri, id_to_update, callback) {
     obj = document.getElementById(id_to_update);
     current_uri = parse_uri(obj.data);
     if (current_uri == new_uri) {
@@ -98,9 +88,12 @@ function update_embed_object(new_uri, id_to_update) {
         embed_url = data = "https://open.spotify.com/embed/track/" + new_uri;
         obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
     }
+    callback()
 }
 
-function do_get_analysis(uri) {
+function do_get_analysis() {
+    obj = document.getElementById('seedObject');
+    uri = parse_uri(obj.data);
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -197,7 +190,7 @@ function update_recommendations(raw_recommendations) {
     for (var i = 0; i < LIMIT; i++) {
         track = tracks[i]
         id = track['id']
-        update_embed_object(id, 'recommendObject' + String(i + 1))
+        update_embed_object(id, 'recommendObject' + String(i + 1), function(){})
     }
 }
 
