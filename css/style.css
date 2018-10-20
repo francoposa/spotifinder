@@ -52,6 +52,8 @@ h3 {
     border-bottom-left-radius: 3px;
 }
 .seed-area {
+    width: 95%;
+    margin-left: 2.5%;
     margin-top: 2em;
 }
 #seed-right {
@@ -144,6 +146,10 @@ input[type=range]::-moz-focus-outer {
     background: #1db954;
     cursor: pointer;
 }
+
+
+
+
 
 /* Link stuff down here */
 a {
