@@ -120,11 +120,11 @@ function handle_analysis_response() {
 
 function normalize_analysis(raw_analysis) {
 	console.log("normalizing analysis: " + raw_analysis);
-	danceability = Math.round(analysis['danceability'] * 100);
-	energy = Math.round(analysis['energy'] * 100);
-	loudness = Math.round(((-60 - analysis['loudness']) / -60) * 100);
-	tempo = Math.round(analysis['tempo']);
-	valence = Math.round(analysis['valence'] * 100);
+	danceability = Math.round(raw_analysis['danceability'] * 100);
+	energy = Math.round(raw_analysis['energy'] * 100);
+	loudness = Math.round(((-60 - raw_analysis['loudness']) / -60) * 100);
+	tempo = Math.round(raw_analysis['tempo']);
+	valence = Math.round(raw_analysis['valence'] * 100);
 	console.log({
 		'danceability': danceability,
 		'energy': energy,
