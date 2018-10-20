@@ -111,11 +111,12 @@ function do_get_analysis(uri) {
 
 function handle_analysis_response() {
 	if (this.status === 200) {
-            analysis = JSON.parse(this.responseText);
-            do_get_recommendation(analysis);
-            analysis = normalize_analysis(analysis);
-            set_sliders(analysis);
-    	}
+        raw_analysis = JSON.parse(this.responseText);
+		console.log(raw_analysis)
+		normalized_analysis = normalize_analysis(analysis);
+        set_sliders(normalized_analysis);
+        do_get_recommendation(raw_analysis);
+    }
 }
 
 function normalize_analysis(raw_analysis) {
@@ -125,6 +126,13 @@ function normalize_analysis(raw_analysis) {
 	loudness = Math.round(((-60 - analysis['loudness']) / -60) * 100);
 	tempo = Math.round(analysis['tempo']);
 	valence = Math.round(analysis['valence'] * 100);
+	console.log({
+		'danceability': danceability,
+		'energy': energy,
+		'loudness': loudness,
+		'tempo': tempo,
+		'valence': valence
+	});
 	return {
 		'danceability': danceability,
 		'energy': energy,
