@@ -3,26 +3,6 @@ body {
   color: #191414;
   background-color:rgb(254,254,254);
 }
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:link {  /* unvisited link */
-    color: inherit;
-    text-decoration: none;
-}
-a:visited {  /* visited link */
-    color: inherit;
-    text-decoration: none;
-}
-a:hover {  /* mouse over link */
-    color: inherit;
-    text-decoration: none;
-}
-a:active {  /* selected link */
-    color: inherit;
-    text-decoration: none;
-}
 h3 {
     display: block;
 }
@@ -163,4 +143,26 @@ input[type=range]::-moz-focus-outer {
     border-radius: 50%;
     background: #1db954;
     cursor: pointer;
+}
+
+/* Link stuff down here */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:link {  /* unvisited link */
+    color: inherit;
+    text-decoration: none;
+}
+a:visited {  /* visited link */
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {  /* mouse over link */
+    color: inherit;
+    text-decoration: none;
+}
+a:active {  /* selected link */
+    color: inherit;
+    text-decoration: none;
 }
