@@ -63,6 +63,9 @@ const LIMIT = 12
 function analyze() {
     console.log("calling analyze");
     raw_input = document.getElementById('searchInput').value;
+    if (raw_input.length < 1) {
+        return;
+    }
     console.log(raw_input);
     uri = parse_uri(raw_input);
     console.log(uri);
