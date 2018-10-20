@@ -83,12 +83,13 @@ function update_embed_object(new_uri, id_to_update, callback) {
     obj = document.getElementById(id_to_update);
     current_uri = parse_uri(obj.data);
     if (current_uri == new_uri) {
+        callback();
         return;
     } else {
         embed_url = data = "https://open.spotify.com/embed/track/" + new_uri;
         obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
+        callback();
     }
-    callback()
 }
 
 function do_get_analysis() {
@@ -186,6 +187,7 @@ function handle_recommendation_response() {
 }
 
 function update_recommendations(raw_recommendations) {
+    console.log("updating recommendations");
     tracks = raw_recommendations['tracks']
     for (var i = 0; i < LIMIT; i++) {
         track = tracks[i]

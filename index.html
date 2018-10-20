@@ -30,22 +30,19 @@
     </script>
 
 </head>
-
 <body>
   <div id="app">
-<!--     <div id="topLine">
-    </div> -->
-    <div id="navContainer" class="container">
-      <nav id="nav" class="navbar navbar-light">
-        <span class="navbar-brand"><a href="#">Spoti&#183;Finder</a></span>
-      </nav>
+    <div class="container">
+        <nav id="nav" class="navbar navbar-light">
+            <span class="navbar-brand"><a href="#">Spoti&#183;Finder</a></span>
+        </nav>
         <div class="row text-center">
-            <header  id="inputInstructions" class="col-xs-10 col-xs-offset-1">
-              <p id ="inputLabel" class="text-left">Paste a link to a Spotify track to analyze</p>
-            </header>
+            <div id="inputLabel" class="col-md-12 search-area">
+              <p class="text-left">Paste a link to a Spotify track to analyze</p>
+            </div>
         </div>
         <div class="row text-center">
-            <div class="col-xs-10 col-xs-offset-1 text-center">
+            <div class="col-md-12 search-area">
                 <form id="searchForm" class="input-group input-group-lg">
                     <input id="searchInput" class="form-control search-bar" type="text" placeholder="https://open.spotify.com/track/17JYzDCW1UTndfURuTydF2"/>
                     <span class="input-group-btn">
@@ -53,88 +50,75 @@
                     </span>
                 </form>
             </div>
-          </div>
-        <div id="seed" class="row text-center">
-          <div id="seedColumn" class="col-xs-10 col-xs-offset-1 text-center">
-            <span id="seed-left" class="col-xs-4 text-center">
-              <h4>Your Track</h4>
-              <object id="seedObject" data="https://open.spotify.com/embed/track/17JYzDCW1UTndfURuTydF2"></object>
-          </span>
-          <span id="seed-right" class="col-xs-6 text-center">
-            <h4>Audio Features</h4>
-            <form id="slideForm" class="input-group input-group-lg">
-              <div class="slide-container text-center">
-                <label class="slider-label" for="danceabilityRange">Danceability: <span id="danceabilityValue"></span></label>
-                <input type="range" min="1" max="100" value="74" class="slider" id="danceabilityRange"/>
-                <label class="slider-label" for="energyRange">Energy: <span id="energyValue"></span></label>
-                <input type="range" min="1" max="100" value="76" class="slider" id="energyRange">
-                <label class="slider-label" for="LoudnessRange">Loudness: <span id="loudnessValue"></span></label>
-                <input type="range" min="1" max="100" value="88" class="slider" id="loudnessRange">
-                <label class="slider-label" for="tempoRange">Tempo: <span id="tempoValue"></span> bpm</label>
-                <input type="range" min="1" max="250" value="117" class="slider" id="tempoRange">
-                <label class="slider-label" for="valenceRange">Valence: <span id="valenceValue"></span></label>
-                <input type="range" min="1" max="100" value="71" class="slider" id="valenceRange">
-              </div>
-            </form>
-          </span>
-          </div>
         </div>
-<!--       </div>
-      <div class="container"> -->
+        <div class="row text-center seed-area">
+            <div id="seed-left" class="col-md-5">
+                <h4>Your Track</h4>
+                <object id="seedObject" data="https://open.spotify.com/embed/track/17JYzDCW1UTndfURuTydF2"></object>
+            </div>
+            <div id="seed-right" class="col-md-7">
+                <h4>Audio Features</h4>
+                <form id="slideForm" class="input-group input-group-lg">
+                    <div class="slide-container text-center">
+                        <label class="slider-label" for="danceabilityRange">Danceability: <span id="danceabilityValue"></span></label>
+                        <input type="range" min="1" max="100" value="74" class="slider" id="danceabilityRange"/>
+                        <label class="slider-label" for="energyRange">Energy: <span id="energyValue"></span></label>
+                        <input type="range" min="1" max="100" value="76" class="slider" id="energyRange">
+                        <label class="slider-label" for="LoudnessRange">Loudness: <span id="loudnessValue"></span></label>
+                        <input type="range" min="1" max="100" value="88" class="slider" id="loudnessRange">
+                        <label class="slider-label" for="tempoRange">Tempo: <span id="tempoValue"></span> bpm</label>
+                        <input type="range" min="1" max="250" value="117" class="slider" id="tempoRange">
+                        <label class="slider-label" for="valenceRange">Valence: <span id="valenceValue"></span></label>
+                        <input type="range" min="1" max="100" value="71" class="slider" id="valenceRange">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h3 id="recommendationsHeader" class="text-center">Recommendations</h3>
         <div class="row text-center recommendation-row">
-          <h3 id="recommendationsHeader">Recommendations</h3>
-          <div class="col-xs-12 text-center recommendation-columns">
-            <span id="recommendSpan1" class="col-xs-2 text-center recommendation">
+            <div id="recommendDiv1" class="col-md-3 text-center recommendation">
               <object id="recommendObject1" class="recommendation-object" data="https://open.spotify.com/embed/track/5U0RzSPAVv4jxWkLinGLWF"></object>
-            </span>
-            <span id="recommendSpan2" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv2" class="col-md-3 text-center recommendation">
               <object id="recommendObject2" class="recommendation-object" data="https://open.spotify.com/embed/track/2E3QWynzpQgo1PHsVIq7ao"></object>
-            </span>
-            <span id="recommendSpan3" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv3" class="col-md-3 text-center recommendation">
               <object id="recommendObject3" class="recommendation-object" data="https://open.spotify.com/embed/track/7slO17jNwf7yI0SHLEXIXJ"></object>
-            </span>
-            <span id="recommendSpan4" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv4" class="col-md-3 text-center recommendation">
               <object id="recommendObject4" class="recommendation-object" data="https://open.spotify.com/embed/track/1OEIsjH8IxGMxu8AZEZKCe"></object>
-            </span>
-          </div>
+            </div>
         </div>
         <div class="row text-center recommendation-row">
-          <div class="col-xs-12 text-center recommendation-columns">
-            <span id="recommendSpan5" class="col-xs-2 text-center recommendation">
+            <div id="recommendDiv5" class="col-md-3 text-center recommendation">
               <object id="recommendObject5" class="recommendation-object" data="https://open.spotify.com/embed/track/3TGRqZ0a2l1LRblBkJoaDx"></object>
-            </span>
-            <span id="recommendSpan6" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv6" class="col-md-3 text-center recommendation">
               <object id="recommendObject6" class="recommendation-object" data="https://open.spotify.com/embed/track/6ZL81xHZNBRYM7MO3tiVTP"></object>
-            </span>
-            <span id="recommendSpan7" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv7" class="col-md-3 text-center recommendation">
               <object id="recommendObject7" class="recommendation-object" data="https://open.spotify.com/embed/track/1So1tVk3gybvc2I0JY8K22"></object>
-            </span>
-            <span id="recommendSpan8" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv8" class="col-md-3 text-center recommendation">
               <object id="recommendObject8" class="recommendation-object" data="https://open.spotify.com/embed/track/6zJznQATy5aYSduaMgHIxA"></object>
-            </span>
+            </div>
           </div>
-        </div>
-        <div class="row text-center recommendation-row">
-          <div class="col-xs-12 text-center recommendation-columns">
-            <span id="recommendSpan9" class="col-xs-2 text-center recommendation">
+          <div class="row text-center recommendation-row">
+            <div id="recommendDiv9" class="col-md-3 text-center recommendation">
               <object id="recommendObject9" class="recommendation-object" data="https://open.spotify.com/embed/track/1qZuf7zgRHKgfSijGm2CTy"></object>
-            </span>
-            <span id="recommendSpan10" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv10" class="col-md-3 text-center recommendation">
               <object id="recommendObject10" class="recommendation-object" data="https://open.spotify.com/embed/track/6IBA0Sy4fygin7LNDY9Vtt"></object>
-            </span>
-            <span id="recommendSpan11" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv11" class="col-md-3 text-center recommendation">
               <object id="recommendObject11" class="recommendation-object" data="https://open.spotify.com/embed/track/0yaEc9gKZ9G3Dao1JPMUnd"></object>
-            </span>
-            <span id="recommendSpan12" class="col-xs-2 text-center recommendation">
+            </div>
+            <div id="recommendDiv12" class="col-md-3 text-center recommendation">
               <object id="recommendObject12" class="recommendation-object" data="https://open.spotify.com/embed/track/2btKtacOXuMtC9WjcNRvAA"></object>
-            </span>
+            </div>
           </div>
-        </div>
-        <div class="row text-center footer">
-          <div class="col-xs-12 text-center">
-        </div>
-      </div>
     </div>
+  </div>
 </body>
     <script src="js/index.js"></script>
 </html>
