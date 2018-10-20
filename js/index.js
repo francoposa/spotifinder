@@ -20,38 +20,38 @@ var valenceValue = document.getElementById('valenceValue');
 valenceValue.innerHTML = valenceRange.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
-danceabilityRange.oninput = function() {
-    danceabilityValue.innerHTML = this.value;
+danceabilityRange.oninput = function () {
+	danceabilityValue.innerHTML = this.value;
 }
-danceabilityRange.onchange = function() {
-    danceabilityValue.innerHTML = this.value;
+danceabilityRange.onchange = function () {
+	danceabilityValue.innerHTML = this.value;
 }
-energyRange.oninput = function() {
-    energyValue.innerHTML = this.value;
+energyRange.oninput = function () {
+	energyValue.innerHTML = this.value;
 }
-energyRange.onchange = function() {
-    energyValue.innerHTML = this.value;
+energyRange.onchange = function () {
+	energyValue.innerHTML = this.value;
 }
-loudnessRange.oninput = function() {
-    loudnessValue.innerHTML = this.value;
+loudnessRange.oninput = function () {
+	loudnessValue.innerHTML = this.value;
 }
-loudnessRange.onchange = function() {
-    loudnessValue.innerHTML = this.value;
+loudnessRange.onchange = function () {
+	loudnessValue.innerHTML = this.value;
 }
-tempoRange.oninput = function() {
-    tempoValue.innerHTML = this.value;
+tempoRange.oninput = function () {
+	tempoValue.innerHTML = this.value;
 }
-tempoRange.onchange = function() {
-    tempoValue.innerHTML = this.value;
+tempoRange.onchange = function () {
+	tempoValue.innerHTML = this.value;
 }
-valenceRange.oninput = function() {
-    valenceValue.innerHTML = this.value;
+valenceRange.oninput = function () {
+	valenceValue.innerHTML = this.value;
 }
-valenceRange.onchange = function() {
-    valenceValue.innerHTML = this.value;
+valenceRange.onchange = function () {
+	valenceValue.innerHTML = this.value;
 }
 
-document.getElementById('searchBtn').onclick = function(e) {
+document.getElementById('searchBtn').onclick = function (e) {
 	e.preventDefault();
 	analyze()
 }
@@ -90,33 +90,32 @@ function parse_uri(raw_input) {
 }
 
 function update_embed_object(new_uri, id_to_update) {
-    obj = document.getElementById(id_to_update);
-    current_uri = parse_uri(obj.data);
-    if (current_uri == new_uri) {
-        return;
-    }
-    else {
-	embed_url = data="https://open.spotify.com/embed/track/" + new_uri;
-	obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
-    }
+	obj = document.getElementById(id_to_update);
+	current_uri = parse_uri(obj.data);
+	if (current_uri == new_uri) {
+		return;
+	} else {
+		embed_url = data = "https://open.spotify.com/embed/track/" + new_uri;
+		obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
+	}
 }
 
 function do_get_analysis(uri) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = handle_analysis_response;
-    xhr.send();
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.onload = handle_analysis_response;
+	xhr.send();
 }
 
 function handle_analysis_response() {
-    if (this.status === 200) {
-        raw_analysis = JSON.parse(this.responseText);
-	console.log(raw_analysis);
-	normalized_analysis = normalize_analysis(raw_analysis);
-        set_sliders(normalized_analysis);
-        do_get_recommendation(raw_analysis);
-    }
+	if (this.status === 200) {
+		raw_analysis = JSON.parse(this.responseText);
+		console.log(raw_analysis);
+		normalized_analysis = normalize_analysis(raw_analysis);
+		set_sliders(normalized_analysis);
+		do_get_recommendation(raw_analysis);
+	}
 }
 
 function normalize_analysis(raw_analysis) {
@@ -157,48 +156,48 @@ function set_sliders(normalized_analysis) {
 }
 
 function do_get_recommendation(raw_analysis) {
-    param_dict = prep_recommendation_params(raw_analysis)
-    query_string = '?'
-    for (var key in param_dict) {
-        if (param_dict.hasOwnProperty(key)) {
-            query_string += key + '=' + String(param_dict[key]) + '&'
-        }
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/recommend' + query_string);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = handle_recommendation_response;
-    xhr.send();
+	param_dict = prep_recommendation_params(raw_analysis)
+	query_string = '?'
+	for (var key in param_dict) {
+		if (param_dict.hasOwnProperty(key)) {
+			query_string += key + '=' + String(param_dict[key]) + '&'
+		}
+	}
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/recommend' + query_string);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.onload = handle_recommendation_response;
+	xhr.send();
 }
 
 function prep_recommendation_params(raw_analysis) {
-    rec_params = {}
-    rec_params['seed_tracks'] = raw_analysis['id']
-    rec_params['danceability'] = raw_analysis['danceability']
-    rec_params['energy'] = raw_analysis['energy']
-    rec_params['loudness'] = raw_analysis['loudness']
-    rec_params['tempo'] = raw_analysis['tempo']
-    rec_params['valence'] = raw_analysis['valence']
-    rec_params['limit'] = LIMIT
-    return rec_params
+	rec_params = {}
+	rec_params['seed_tracks'] = raw_analysis['id']
+	rec_params['danceability'] = raw_analysis['danceability']
+	rec_params['energy'] = raw_analysis['energy']
+	rec_params['loudness'] = raw_analysis['loudness']
+	rec_params['tempo'] = raw_analysis['tempo']
+	rec_params['valence'] = raw_analysis['valence']
+	rec_params['limit'] = LIMIT
+	return rec_params
 }
 
 
 function handle_recommendation_response() {
-    if (this.status === 200) {
-            recommendations = JSON.parse(this.responseText);
-            console.log(recommendations)
-            update_recommendations(recommendations)
+	if (this.status === 200) {
+		recommendations = JSON.parse(this.responseText);
+		console.log(recommendations)
+		update_recommendations(recommendations)
 
-        }
+	}
 }
 
 function update_recommendations(raw_recommendations) {
-    tracks = raw_recommendations['tracks']
-    for (var i = 0; i < LIMIT; i++) {
-        track = tracks[i]
-        id = track['id']
-        update_embed_object(id, 'recommendObject' + String(i + 1))
-    }
+	tracks = raw_recommendations['tracks']
+	for (var i = 0; i < LIMIT; i++) {
+		track = tracks[i]
+		id = track['id']
+		update_embed_object(id, 'recommendObject' + String(i + 1))
+	}
 }
 
