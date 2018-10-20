@@ -102,11 +102,11 @@ function update_embed_object(new_uri, id_to_update) {
 }
 
 function do_get_analysis(uri) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.onload = handle_analysis_response;
-	xhr.send();
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = handle_analysis_response;
+    xhr.send();
 }
 
 function handle_analysis_response() {
