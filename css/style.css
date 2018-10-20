@@ -27,7 +27,7 @@ h3 {
     display: block;
 }
 #inputLabel {
-	padding-top: 1em;
+	margin-top: 2em;
 }
 .container {
 	background-color:rgb(254,254,254);
@@ -84,8 +84,9 @@ h3 {
     height: 25em;
     width: 22em;
 }
-#recommendationHeader {
-    margin-top: 2em;
+
+#recommendationsHeader {
+    margin-top: 1em;
 }
 .recommendation-row {
     height: 25em;
