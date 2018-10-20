@@ -110,10 +110,10 @@ function do_get_analysis(uri) {
 }
 
 function handle_analysis_response() {
-	if (this.status === 200) {
+    if (this.status === 200) {
         raw_analysis = JSON.parse(this.responseText);
-		console.log(raw_analysis)
-		normalized_analysis = normalize_analysis(analysis);
+	console.log(raw_analysis);
+	normalized_analysis = normalize_analysis(raw_analysis);
         set_sliders(normalized_analysis);
         do_get_recommendation(raw_analysis);
     }
