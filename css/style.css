@@ -30,23 +30,11 @@ a:active {
     color: inherit;
     text-decoration: none;
 }
-header {
-	padding-top: 1.5em;
-	margin-bottom: 0.5em;
+#inputLabel {
+	padding-top: 1em;
 }
 h3 {
     display: block;
-}
-object {
-    width: 70%;
-    margin: 5px;
-    height: inherit;
-    border-radius: 3px !important; 
-}
-#topLine {
-	width: 100%;
-	height: 0.3em;
-    background: #1db954;
 }
 .container {
 	background-color:rgb(254,254,254);
@@ -54,13 +42,10 @@ object {
 	border-width: 1px;
 	border-color: rgb(240,240,240);
     border-top-color: #1db954;
-    border-top-width: 2px;
+    border-top-width: 3px;
 	border-radius: 3px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.05);
 	margin-bottom: 1em;
-}
-#navContainer {
-    border-top-width: 3px;
 }
 #nav {
     border-style: none;
@@ -75,20 +60,12 @@ object {
 }
 .navbar-brand {
     margin-bottom: 0.75em;
-    padding: 18px;
+    padding: 0.75em;
     font-size: 1.75em;
 	font-weight: 500;
 }
-#inputInstructions {
-    padding-top: 1.5em;
-}
 #slideForm {
 	width: 95%; /* Width of the outside container */
-    margin-top: 1em;
-    border-left-style: solid;
-    border-width: 1px;
-    border-color: rgb(240,240,240);
-    border-radius: 3px;
 }
 .slide-container {
 	width: 100%;
@@ -173,26 +150,19 @@ input[type=range]::-moz-focus-outer {
     padding: 0px;
 }
 #seed-left {
-    height: inherit;
-    width: 40%;
-    margin-top: 1em;
-    margin-left: 0%;
-    margin-right: 0%;
-    padding-left: 5%;
-    padding-right: 0%;
+/*    height: inherit;*/
 }
 #seed-right {
     height: inherit;
-    width: 55%;
-    margin-top: 1em;
-    margin-left: 0%;
-    margin-right: auto;
-    padding-left: 0%;
+    border-left-style: solid;
+    border-width: 1px;
+    border-color: rgb(240,240,240);
+    border-radius: 0px;
 }
 #seedObject {
     height: 25em;
     width: 22em;
-    margin-top: 1em;
+/*    margin-top: 1em;*/
 }
 .recommendation-row {
     height: 25em;
