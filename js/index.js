@@ -56,22 +56,29 @@ document.getElementById('searchBtn').onclick = function (e) {
     analyze()
 }
 
-
+const ANALYSIS_URL = 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri='
+const RECOMMEND_URL = 'https://spotifinder-backend.herokuapp.com/recommend'
+const EMBED_URL = 'https://open.spotify.com/embed/track/'
 const LIMIT = 12
 
-
 function analyze() {
-    console.log("calling analyze");
     raw_input = document.getElementById('searchInput').value;
-    if (raw_input.length < 1) {
-        return;
-    }
-    console.log(raw_input);
+    if (raw_input.length < 1) { return; }
     uri = parse_uri(raw_input);
-    console.log(uri);
-    console.log("about to update embed object");
-    update_embed_object(uri, 'seedObject', do_get_analysis);
-    console.log("about to get analysis");
+    update_embed_object(uri, 'seedObject', function(){});
+    raw_analysis = get(ANALYSIS_URL + uri);
+    normalized_analysis = normalize_analysis(raw_analysis)
+    recommend(raw_analysis)
+}
+
+function recommend(raw_analysis) {
+    param_dict = prep_recommendation_params(raw_analysis);
+    query_string = '?';
+    for (var key in param_dict) {
+        query_string += key + '=' + String(param_dict[key]) + '&';
+    }
+    recommendations = get(RECOMMEND_URL + query_string);
+    update_recommendations(recommendations);
 }
 
 function parse_uri(raw_input) {
@@ -82,53 +89,23 @@ function parse_uri(raw_input) {
     return uri
 }
 
-function update_embed_object(new_uri, id_to_update, callback) {
+function update_embed_object(new_uri, id_to_update) {
     obj = document.getElementById(id_to_update);
     current_uri = parse_uri(obj.data);
     if (current_uri == new_uri) {
-        callback();
         return;
     } else {
-        embed_url = data = "https://open.spotify.com/embed/track/" + new_uri;
+        embed_url = EMBED_URL + new_uri;
         obj.outerHTML = obj.outerHTML.replace(/data="(.+?)"/, 'data="' + embed_url + '"');
-        callback();
-    }
-}
-
-function do_get_analysis() {
-    obj = document.getElementById('seedObject');
-    uri = parse_uri(obj.data);
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri=' + uri);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = handle_analysis_response;
-    xhr.send();
-}
-
-function handle_analysis_response() {
-    if (this.status === 200) {
-        raw_analysis = JSON.parse(this.responseText);
-        console.log(raw_analysis);
-        normalized_analysis = normalize_analysis(raw_analysis);
-        set_sliders(normalized_analysis);
-        do_get_recommendation(raw_analysis);
     }
 }
 
 function normalize_analysis(raw_analysis) {
-    console.log("normalizing analysis: " + raw_analysis);
     danceability = Math.round(raw_analysis['danceability'] * 100);
     energy = Math.round(raw_analysis['energy'] * 100);
     loudness = Math.round(((-60 - raw_analysis['loudness']) / -60) * 100);
     tempo = Math.round(raw_analysis['tempo']);
     valence = Math.round(raw_analysis['valence'] * 100);
-    console.log({
-        'danceability': danceability,
-        'energy': energy,
-        'loudness': loudness,
-        'tempo': tempo,
-        'valence': valence
-    });
     return {
         'danceability': danceability,
         'energy': energy,
@@ -139,7 +116,6 @@ function normalize_analysis(raw_analysis) {
 }
 
 function set_sliders(normalized_analysis) {
-    console.log("setting sliders");
     danceabilityRange.value = normalized_analysis['danceability'];
     danceabilityRange.onchange();
     energyRange.value = normalized_analysis['energy'];
@@ -152,50 +128,52 @@ function set_sliders(normalized_analysis) {
     valenceRange.onchange();
 }
 
-function do_get_recommendation(raw_analysis) {
-    param_dict = prep_recommendation_params(raw_analysis)
-    query_string = '?'
-    for (var key in param_dict) {
-        if (param_dict.hasOwnProperty(key)) {
-            query_string += key + '=' + String(param_dict[key]) + '&'
-        }
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://spotifinder-backend.herokuapp.com/recommend' + query_string);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = handle_recommendation_response;
-    xhr.send();
-}
 
 function prep_recommendation_params(raw_analysis) {
-    rec_params = {}
-    rec_params['seed_tracks'] = raw_analysis['id']
-    rec_params['danceability'] = raw_analysis['danceability']
-    rec_params['energy'] = raw_analysis['energy']
-    rec_params['loudness'] = raw_analysis['loudness']
-    rec_params['tempo'] = raw_analysis['tempo']
-    rec_params['valence'] = raw_analysis['valence']
-    rec_params['limit'] = LIMIT
-    return rec_params
+    rec_params = {};
+    rec_params['seed_tracks'] = raw_analysis['id'];
+    rec_params['danceability'] = raw_analysis['danceability'];
+    rec_params['energy'] = raw_analysis['energy'];
+    rec_params['loudness'] = raw_analysis['loudness'];
+    rec_params['tempo'] = raw_analysis['tempo'];
+    rec_params['valence'] = raw_analysis['valence'];
+    rec_params['limit'] = LIMIT;
+    return rec_params;
 }
 
-
-function handle_recommendation_response() {
-    if (this.status === 200) {
-        recommendations = JSON.parse(this.responseText);
-        console.log(recommendations)
-        update_recommendations(recommendations)
-
-    }
-}
 
 function update_recommendations(raw_recommendations) {
-    console.log("updating recommendations");
-    tracks = raw_recommendations['tracks']
+    tracks = raw_recommendations['tracks'];
     for (var i = 0; i < LIMIT; i++) {
-        track = tracks[i]
-        id = track['id']
+        track = tracks[i];
+        id = track['id'];
         update_embed_object(id, 'recommendObject' + String(i + 1), function(){})
     }
+}
+
+
+function get(url) {
+    // Return a new Promise
+    return new Promise(function(resolve, reject) {
+        // Do the usual XHR stuff
+        req = new XMLHttpRequest();
+        req.open('GET', url)
+        req.onload = function() {
+            // This is called on 4xx errors so check status
+            if (req.status == 200) {
+                // Resolve promise with the response text
+                resolve(JSON.parse(req.response));
+            }
+            else {
+                reject(Error(req.statusText));
+            }
+        }
+        // Handle network errors
+        req.onerror = function() {
+            reject(Error('Network Error'))
+        }
+        // Make the request
+        req.send()
+    })
 }
 
