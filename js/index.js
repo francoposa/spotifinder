@@ -61,23 +61,30 @@ const RECOMMEND_URL = 'https://spotifinder-backend.herokuapp.com/recommend'
 const EMBED_URL = 'https://open.spotify.com/embed/track/'
 const LIMIT = 12
 
-function analyze() {
+async function analyze() {
     raw_input = document.getElementById('searchInput').value;
     if (raw_input.length < 1) { return; }
     uri = parse_uri(raw_input);
-    update_embed_object(uri, 'seedObject', function(){});
-    raw_analysis = get(ANALYSIS_URL + uri);
-    normalized_analysis = normalize_analysis(raw_analysis)
+    console.log(uri);
+    console.log(ANALYSIS_URL + uri)
+    raw_analysis = await get(ANALYSIS_URL + uri);
+    update_embed_object(uri, 'seedObject')
+    console.log(raw_analysis)
     recommend(raw_analysis)
+    normalized_analysis = await normalize_analysis(raw_analysis)
+    set_sliders(normalized_analysis)
 }
 
-function recommend(raw_analysis) {
+async function recommend(raw_analysis) {
     param_dict = prep_recommendation_params(raw_analysis);
     query_string = '?';
     for (var key in param_dict) {
-        query_string += key + '=' + String(param_dict[key]) + '&';
+        if (param_dict.hasOwnProperty(key)) {
+            query_string += key + '=' + String(param_dict[key]) + '&';
+        }
     }
-    recommendations = get(RECOMMEND_URL + query_string);
+    console.log(RECOMMEND_URL + query_string)
+    recommendations = await get(RECOMMEND_URL + query_string);
     update_recommendations(recommendations);
 }
 
@@ -143,6 +150,7 @@ function prep_recommendation_params(raw_analysis) {
 
 
 function update_recommendations(raw_recommendations) {
+    console.log(raw_recommendations)
     tracks = raw_recommendations['tracks'];
     for (var i = 0; i < LIMIT; i++) {
         track = tracks[i];
