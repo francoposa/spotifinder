@@ -1,4 +1,3 @@
-
 var danceabilityRange = document.getElementById('danceabilityRange');
 var danceabilityValue = document.getElementById('danceabilityValue');
 danceabilityValue.innerHTML = danceabilityRange.value; // Display the default slider value
@@ -53,7 +52,7 @@ valenceRange.onchange = function () {
 
 document.getElementById('searchBtn').onclick = function (e) {
     e.preventDefault();
-    analyze()
+    analyze_track()
 }
 
 const ANALYSIS_URL = 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri='
@@ -61,30 +60,36 @@ const RECOMMEND_URL = 'https://spotifinder-backend.herokuapp.com/recommend'
 const EMBED_URL = 'https://open.spotify.com/embed/track/'
 const LIMIT = 12
 
-async function analyze() {
-    raw_input = document.getElementById('searchInput').value;
+var raw_analysis = null
+var normalized_analysis = null
+
+async function analyze_track() {
+    var raw_input = document.getElementById('searchInput').value;
     if (raw_input.length < 1) { return; }
-    uri = parse_uri(raw_input);
+    var uri = parse_uri(raw_input);
     console.log(uri);
     console.log(ANALYSIS_URL + uri)
     raw_analysis = await get(ANALYSIS_URL + uri);
-    update_embed_object(uri, 'seedObject')
-    console.log(raw_analysis)
-    recommend(raw_analysis)
-    normalized_analysis = await normalize_analysis(raw_analysis)
-    set_sliders(normalized_analysis)
+    update_embed_object(uri, 'seedObject');
+    console.log("Raw Analysis");
+    console.log(raw_analysis);
+    recommend(raw_analysis);
+    normalized_analysis = await normalize_analysis(raw_analysis);
+    set_sliders(normalized_analysis);
 }
 
 async function recommend(raw_analysis) {
-    param_dict = prep_recommendation_params(raw_analysis);
-    query_string = '?';
+    var param_dict = prep_recommendation_params(raw_analysis);
+    console.log("Raw analysis params for Recommend API");
+    console.log(param_dict)
+    var query_string = '?';
     for (var key in param_dict) {
         if (param_dict.hasOwnProperty(key)) {
             query_string += key + '=' + String(param_dict[key]) + '&';
         }
     }
     console.log(RECOMMEND_URL + query_string)
-    recommendations = await get(RECOMMEND_URL + query_string);
+    var recommendations = await get(RECOMMEND_URL + query_string);
     update_recommendations(recommendations);
 }
 
@@ -113,6 +118,22 @@ function normalize_analysis(raw_analysis) {
     loudness = Math.round(((-60 - raw_analysis['loudness']) / -60) * 100);
     tempo = Math.round(raw_analysis['tempo']);
     valence = Math.round(raw_analysis['valence'] * 100);
+    return {
+        'danceability': danceability,
+        'energy': energy,
+        'loudness': loudness,
+        'tempo': tempo,
+        'valence': valence
+    };
+}
+
+//TODO denormalize analysis
+function denormalize_analysis(normalized_analysis) {
+    danceability = (normalized_analysis['danceability'] / 100);
+    energy = normalized_analysis['energy'] / 100;
+    loudness = Math.round(-60 - ((normalized_analysis['loudness'] / 100) * -60));
+    tempo = normalized_analysis['tempo'];
+    valence = Math.round(normalized_analysis['valence'] / 100);
     return {
         'danceability': danceability,
         'energy': energy,
@@ -155,18 +176,18 @@ function update_recommendations(raw_recommendations) {
     for (var i = 0; i < LIMIT; i++) {
         track = tracks[i];
         id = track['id'];
-        update_embed_object(id, 'recommendObject' + String(i + 1), function(){})
+        update_embed_object(id, 'recommendObject' + String(i + 1), function () { })
     }
 }
 
 
 function get(url) {
     // Return a new Promise
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         // Do the usual XHR stuff
         req = new XMLHttpRequest();
         req.open('GET', url)
-        req.onload = function() {
+        req.onload = function () {
             // This is called on 4xx errors so check status
             if (req.status == 200) {
                 // Resolve promise with the response text
@@ -177,7 +198,7 @@ function get(url) {
             }
         }
         // Handle network errors
-        req.onerror = function() {
+        req.onerror = function () {
             reject(Error('Network Error'))
         }
         // Make the request
