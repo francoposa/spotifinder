@@ -53,16 +53,17 @@
           </form>
         </div>
       </div>
-      <div class="row text-center seed-area">
-        <div id="seed-left" class="col-md-5 col-xs-12 ">
-          <h4>Your Track</h4>
+
+      <div id="seed-content-row" class="row text-center">
+        <div id="seed-track-content" class="col-md-5 col-xs-12 ">
+          <h3 class="seed-title">Your Track</h3>
           <object id="seedObject" data="https://open.spotify.com/embed/track/17JYzDCW1UTndfURuTydF2"></object>
         </div>
-        <div id="seed-right" class="col-md-7 col-xs-12 ">
-          <h4>Audio Features</h4>
+        <div id="seed-features-content" class="col-md-7 col-xs-12 ">
+          <h3 class="seed-title">Audio Features</h3>
           <form id="slideForm" class="input-group input-group-lg">
             <div class="slide-container text-center">
-              <label class="slider-label" for="danceabilityRange">Danceability: <span
+              <label id="slider-label-top" class="slider-label" for="danceabilityRange">Danceability: <span
                   id="danceabilityValue"></span></label>
               <input type="range" min="1" max="100" value="74" class="slider" id="danceabilityRange" />
               <label class="slider-label" for="energyRange">Energy: <span id="energyValue"></span></label>
@@ -74,18 +75,16 @@
               <label class="slider-label" for="valenceRange">Valence: <span id="valenceValue"></span></label>
               <input type="range" min="1" max="100" value="71" class="slider" id="valenceRange">
             </div>
+            <button class="btn btn-success" disabled>Reset</button><button class="btn btn-success"
+              disabled>Recommend</button>
           </form>
         </div>
       </div>
       <div class="row text-center">
-        <div class="col-md-5 col-xs-6">Reset to Original Track
+        <div class="col-md-12 col-xs-12">
+          COMING SOON: Adjust the Audio Features sliders and press 'Recommend' to fine-tune your Recommendations.
         </div>
-        <div class="col-md-7 col-xs-6">Update Recommendations with New Features
-        </div>
-        <div class="col-md-5 col-xs-6"><button class="btn btn-success">Reset</button>
-        </div>
-        <div class="col-md-7 col-xs-6"><button class="btn btn-success">Update</button>
-        </div>
+        <div class="col-md-12 col-xs-12">Press 'Reset' to return to the original Audio Features for your track.</div>
       </div>
       <h3 id="recommendationsHeader" class="text-center">Recommendations</h3>
       <div class="row text-center recommendation-row">

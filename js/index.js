@@ -1,4 +1,3 @@
-
 var danceabilityRange = document.getElementById('danceabilityRange');
 var danceabilityValue = document.getElementById('danceabilityValue');
 danceabilityValue.innerHTML = danceabilityRange.value; // Display the default slider value
@@ -61,10 +60,13 @@ const RECOMMEND_URL = 'https://spotifinder-backend.herokuapp.com/recommend'
 const EMBED_URL = 'https://open.spotify.com/embed/track/'
 const LIMIT = 12
 
+var raw_analysis = null
+var normalized_analysis = null
+
 async function analyze_track() {
-    raw_input = document.getElementById('searchInput').value;
+    var raw_input = document.getElementById('searchInput').value;
     if (raw_input.length < 1) { return; }
-    uri = parse_uri(raw_input);
+    var uri = parse_uri(raw_input);
     console.log(uri);
     console.log(ANALYSIS_URL + uri)
     raw_analysis = await get(ANALYSIS_URL + uri);
@@ -77,17 +79,17 @@ async function analyze_track() {
 }
 
 async function recommend(raw_analysis) {
-    param_dict = prep_recommendation_params(raw_analysis);
+    var param_dict = prep_recommendation_params(raw_analysis);
     console.log("Raw analysis params for Recommend API");
     console.log(param_dict)
-    query_string = '?';
+    var query_string = '?';
     for (var key in param_dict) {
         if (param_dict.hasOwnProperty(key)) {
             query_string += key + '=' + String(param_dict[key]) + '&';
         }
     }
     console.log(RECOMMEND_URL + query_string)
-    recommendations = await get(RECOMMEND_URL + query_string);
+    var recommendations = await get(RECOMMEND_URL + query_string);
     update_recommendations(recommendations);
 }
 
