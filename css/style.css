@@ -9,7 +9,7 @@ h3 {
 #inputLabel {
 	margin-top: 2em;
 }
-.container {
+#app-container {
 	background-color:rgb(254,254,254);
 	border-style: solid;
 	border-width: 1px;
