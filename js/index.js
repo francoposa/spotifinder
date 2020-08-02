@@ -1,21 +1,21 @@
-var danceabilityRange = document.getElementById('danceabilityRange');
-var danceabilityValue = document.getElementById('danceabilityValue');
+let danceabilityRange = document.getElementById('danceabilityRange');
+let danceabilityValue = document.getElementById('danceabilityValue');
 danceabilityValue.innerHTML = danceabilityRange.value; // Display the default slider value
 
-var energyRange = document.getElementById('energyRange');
-var energyValue = document.getElementById('energyValue');
+let energyRange = document.getElementById('energyRange');
+let energyValue = document.getElementById('energyValue');
 energyValue.innerHTML = energyRange.value; // Display the default slider value
 
-var loudnessRange = document.getElementById('loudnessRange');
-var loudnessValue = document.getElementById('loudnessValue');
+let loudnessRange = document.getElementById('loudnessRange');
+let loudnessValue = document.getElementById('loudnessValue');
 loudnessValue.innerHTML = loudnessRange.value; // Display the default slider value
 
-var tempoRange = document.getElementById('tempoRange');
-var tempoValue = document.getElementById('tempoValue');
+let tempoRange = document.getElementById('tempoRange');
+let tempoValue = document.getElementById('tempoValue');
 tempoValue.innerHTML = tempoRange.value; // Display the default slider value
 
-var valenceRange = document.getElementById('valenceRange');
-var valenceValue = document.getElementById('valenceValue');
+let valenceRange = document.getElementById('valenceRange');
+let valenceValue = document.getElementById('valenceValue');
 valenceValue.innerHTML = valenceRange.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
@@ -60,13 +60,13 @@ const RECOMMEND_URL = 'https://spotifinder-backend.herokuapp.com/recommend'
 const EMBED_URL = 'https://open.spotify.com/embed/track/'
 const LIMIT = 12
 
-var raw_analysis = null
-var normalized_analysis = null
+let raw_analysis = null
+let normalized_analysis = null
 
 async function analyze_track() {
-    var raw_input = document.getElementById('searchInput').value;
+    let raw_input = document.getElementById('searchInput').value;
     if (raw_input.length < 1) { return; }
-    var uri = parse_uri(raw_input);
+    let uri = parse_uri(raw_input);
     console.log(uri);
     console.log(ANALYSIS_URL + uri)
     raw_analysis = await get(ANALYSIS_URL + uri);
@@ -79,17 +79,17 @@ async function analyze_track() {
 }
 
 async function recommend(raw_analysis) {
-    var param_dict = prep_recommendation_params(raw_analysis);
+    let param_dict = prep_recommendation_params(raw_analysis);
     console.log("Raw analysis params for Recommend API");
     console.log(param_dict)
-    var query_string = '?';
-    for (var key in param_dict) {
+    let query_string = '?';
+    for (let key in param_dict) {
         if (param_dict.hasOwnProperty(key)) {
             query_string += key + '=' + String(param_dict[key]) + '&';
         }
     }
     console.log(RECOMMEND_URL + query_string)
-    var recommendations = await get(RECOMMEND_URL + query_string);
+    let recommendations = await get(RECOMMEND_URL + query_string);
     update_recommendations(recommendations);
 }
 
@@ -173,7 +173,7 @@ function prep_recommendation_params(raw_analysis) {
 function update_recommendations(raw_recommendations) {
     console.log(raw_recommendations)
     tracks = raw_recommendations['tracks'];
-    for (var i = 0; i < LIMIT; i++) {
+    for (let i = 0; i < LIMIT; i++) {
         track = tracks[i];
         id = track['id'];
         update_embed_object(id, 'recommendObject' + String(i + 1), function () { })
