@@ -55,8 +55,8 @@ document.getElementById('searchBtn').onclick = function (e) {
     analyze_track()
 }
 
-const ANALYSIS_URL = 'https://spotifinder-backend.herokuapp.com/analyze?spotify_uri='
-const RECOMMEND_URL = 'https://spotifinder-backend.herokuapp.com/recommend'
+const ANALYSIS_URL = 'https://spotifinder-app-kv5p4.ondigitalocean.app/analyze?spotify_uri='
+const RECOMMEND_URL = 'https://spotifinder-app-kv5p4.ondigitalocean.app/recommend'
 const EMBED_URL = 'https://open.spotify.com/embed/track/'
 const LIMIT = 12
 
